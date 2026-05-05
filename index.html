@@ -1,0 +1,1179 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fatih Kiliç – Portfolio</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <style>
+        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+        :root {
+            --bg: #07070f;
+            --surface: #0e0e1c;
+            --surface-2: #14142a;
+            --surface-3: #1c1c38;
+            --accent: #818cf8;
+            --accent-soft: rgba(129, 140, 248, 0.12);
+            --accent-border: rgba(129, 140, 248, 0.28);
+            --green: #34d399;
+            --orange: #fb923c;
+            --pink: #f472b6;
+            --text: #e2e8f0;
+            --text-muted: #8b95a8;
+            --border: rgba(255, 255, 255, 0.07);
+        }
+
+        html { scroll-behavior: smooth; }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* ── SCROLLBAR ── */
+        ::-webkit-scrollbar { width: 5px; }
+        ::-webkit-scrollbar-track { background: var(--bg); }
+        ::-webkit-scrollbar-thumb { background: var(--surface-3); border-radius: 3px; }
+        ::-webkit-scrollbar-thumb:hover { background: var(--accent); }
+
+        /* ── NAVIGATION ── */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 1000;
+            padding: 1rem 2rem;
+            background: rgba(7, 7, 15, 0.75);
+            backdrop-filter: blur(24px);
+            -webkit-backdrop-filter: blur(24px);
+            border-bottom: 1px solid var(--border);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .nav-logo {
+            font-weight: 800;
+            font-size: 1.05rem;
+            letter-spacing: -0.01em;
+            color: var(--accent);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: var(--text-muted);
+            text-decoration: none;
+            font-size: 0.875rem;
+            font-weight: 500;
+            transition: color 0.2s;
+        }
+
+        .nav-links a:hover { color: var(--text); }
+
+        /* ── HERO ── */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            position: relative;
+            padding: 6rem 2rem 4rem;
+            overflow: hidden;
+        }
+
+        .hero-glow {
+            position: absolute;
+            inset: 0;
+            background:
+                radial-gradient(ellipse 80% 55% at 50% -10%, rgba(129, 140, 248, 0.14) 0%, transparent 65%),
+                radial-gradient(ellipse 45% 35% at 85% 85%, rgba(52, 211, 153, 0.07) 0%, transparent 55%);
+            pointer-events: none;
+        }
+
+        .hero-dots {
+            position: absolute;
+            inset: 0;
+            background-image:
+                radial-gradient(circle, rgba(129, 140, 248, 0.08) 1px, transparent 1px);
+            background-size: 40px 40px;
+            pointer-events: none;
+        }
+
+        .hero-content {
+            position: relative;
+            max-width: 820px;
+        }
+
+        .hero-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: var(--accent-soft);
+            border: 1px solid var(--accent-border);
+            padding: 0.45rem 1.1rem;
+            border-radius: 100px;
+            font-size: 0.82rem;
+            color: var(--accent);
+            margin-bottom: 2.25rem;
+            font-weight: 500;
+            letter-spacing: 0.01em;
+        }
+
+        .hero-name {
+            font-size: clamp(3.2rem, 9vw, 6rem);
+            font-weight: 900;
+            line-height: 1.0;
+            letter-spacing: -0.04em;
+            margin-bottom: 1.25rem;
+        }
+
+        .gradient-text {
+            background: linear-gradient(135deg, var(--accent) 0%, #a78bfa 40%, var(--green) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hero-sub {
+            font-size: clamp(1rem, 2.5vw, 1.25rem);
+            color: var(--text-muted);
+            font-weight: 400;
+            margin-bottom: 2.75rem;
+            letter-spacing: 0.01em;
+        }
+
+        .hero-sub strong {
+            color: var(--text);
+            font-weight: 500;
+        }
+
+        .hero-cta {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.875rem 2rem;
+            border-radius: 10px;
+            font-weight: 600;
+            font-size: 0.925rem;
+            text-decoration: none;
+            transition: all 0.22s ease;
+            cursor: pointer;
+            border: none;
+            font-family: inherit;
+        }
+
+        .btn-primary {
+            background: var(--accent);
+            color: #05050d;
+        }
+
+        .btn-primary:hover {
+            background: #a5b4fc;
+            transform: translateY(-2px);
+            box-shadow: 0 10px 32px rgba(129, 140, 248, 0.28);
+        }
+
+        .btn-ghost {
+            background: var(--surface-2);
+            color: var(--text);
+            border: 1px solid var(--border);
+        }
+
+        .btn-ghost:hover {
+            border-color: var(--accent-border);
+            color: var(--accent);
+            transform: translateY(-2px);
+        }
+
+        /* ── COMMON SECTION ── */
+        section { padding: 6rem 2rem; }
+
+        .container {
+            max-width: 1120px;
+            margin: 0 auto;
+        }
+
+        .label {
+            font-size: 0.75rem;
+            font-weight: 700;
+            letter-spacing: 0.18em;
+            text-transform: uppercase;
+            color: var(--accent);
+            margin-bottom: 0.7rem;
+        }
+
+        .section-title {
+            font-size: clamp(2rem, 5vw, 2.75rem);
+            font-weight: 800;
+            letter-spacing: -0.025em;
+            line-height: 1.15;
+            margin-bottom: 1rem;
+        }
+
+        .section-desc {
+            color: var(--text-muted);
+            font-size: 1.05rem;
+            max-width: 580px;
+            margin-bottom: 3.5rem;
+            line-height: 1.75;
+        }
+
+        /* ── ABOUT ── */
+        #over-mij { background: var(--surface); }
+
+        .about-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: start;
+        }
+
+        .about-text p {
+            color: var(--text-muted);
+            margin-bottom: 1.2rem;
+            line-height: 1.85;
+            font-size: 0.975rem;
+        }
+
+        .about-text p.lead {
+            color: var(--text);
+            font-size: 1.08rem;
+            line-height: 1.75;
+        }
+
+        .traits {
+            display: flex;
+            flex-direction: column;
+            gap: 0.875rem;
+        }
+
+        .trait {
+            background: var(--surface-2);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 1.1rem 1.4rem;
+            display: flex;
+            align-items: flex-start;
+            gap: 1rem;
+            transition: border-color 0.2s;
+        }
+
+        .trait:hover { border-color: var(--accent-border); }
+
+        .trait-icon {
+            width: 38px;
+            height: 38px;
+            border-radius: 9px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.1rem;
+            flex-shrink: 0;
+        }
+
+        .ic-purple { background: rgba(129, 140, 248, 0.14); }
+        .ic-green  { background: rgba(52, 211, 153, 0.14); }
+        .ic-orange { background: rgba(251, 146, 60, 0.14); }
+        .ic-blue   { background: rgba(56, 189, 248, 0.14); }
+
+        .trait h4 { font-weight: 600; font-size: 0.925rem; margin-bottom: 0.2rem; }
+        .trait p  { font-size: 0.82rem; color: var(--text-muted); margin: 0; }
+
+        .stats {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1.25rem;
+            margin-top: 4rem;
+        }
+
+        .stat-card {
+            background: var(--surface-2);
+            border: 1px solid var(--border);
+            border-radius: 14px;
+            padding: 1.75rem 1.5rem;
+            text-align: center;
+            transition: border-color 0.2s, transform 0.2s;
+        }
+
+        .stat-card:hover {
+            border-color: var(--accent-border);
+            transform: translateY(-3px);
+        }
+
+        .stat-emoji { font-size: 2rem; margin-bottom: 0.6rem; display: block; }
+
+        .stat-card h3 {
+            font-size: 0.95rem;
+            font-weight: 600;
+            margin-bottom: 0.4rem;
+        }
+
+        .stat-card p {
+            font-size: 0.8rem;
+            color: var(--text-muted);
+            line-height: 1.5;
+        }
+
+        /* ── ACTIVITIES ── */
+        #activiteiten { background: var(--bg); }
+
+        .tabs {
+            display: flex;
+            gap: 0.5rem;
+            margin-bottom: 2.75rem;
+            flex-wrap: wrap;
+        }
+
+        .tab-btn {
+            padding: 0.575rem 1.2rem;
+            border-radius: 8px;
+            border: 1px solid var(--border);
+            background: transparent;
+            color: var(--text-muted);
+            cursor: pointer;
+            font-size: 0.875rem;
+            font-weight: 500;
+            transition: all 0.2s;
+            font-family: inherit;
+        }
+
+        .tab-btn.active,
+        .tab-btn:hover {
+            background: var(--accent-soft);
+            border-color: var(--accent-border);
+            color: var(--accent);
+        }
+
+        .tab-pane { display: none; }
+        .tab-pane.active { display: block; }
+
+        .card-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 1rem;
+        }
+
+        .card {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 13px;
+            padding: 1.5rem;
+            transition: border-color 0.2s, transform 0.2s;
+        }
+
+        .card:hover {
+            border-color: var(--accent-border);
+            transform: translateY(-2px);
+        }
+
+        .card-company {
+            font-size: 0.72rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.12em;
+            color: var(--accent);
+            margin-bottom: 0.45rem;
+        }
+
+        .card-title {
+            font-weight: 650;
+            font-size: 0.975rem;
+            margin-bottom: 0.55rem;
+            line-height: 1.4;
+        }
+
+        .card-desc {
+            font-size: 0.84rem;
+            color: var(--text-muted);
+            margin-bottom: 1.1rem;
+            line-height: 1.65;
+        }
+
+        .card-meta {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.65rem;
+            font-size: 0.78rem;
+            color: var(--text-muted);
+        }
+
+        .card-meta span { display: flex; align-items: center; gap: 0.3rem; }
+
+        /* ── FEATURED ── */
+        #selectie { background: var(--surface); }
+
+        .accordion-item {
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            margin-bottom: 0.875rem;
+            overflow: hidden;
+            transition: border-color 0.2s;
+        }
+
+        .accordion-item.open { border-color: var(--accent-border); }
+
+        .accordion-header {
+            display: flex;
+            align-items: center;
+            gap: 1.25rem;
+            padding: 1.5rem 1.75rem;
+            cursor: pointer;
+            background: var(--surface-2);
+            transition: background 0.2s;
+            user-select: none;
+        }
+
+        .accordion-header:hover { background: var(--surface-3); }
+
+        .acc-num {
+            width: 46px;
+            height: 46px;
+            border-radius: 11px;
+            background: var(--accent-soft);
+            border: 1px solid var(--accent-border);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 800;
+            font-size: 1rem;
+            color: var(--accent);
+            flex-shrink: 0;
+        }
+
+        .acc-info { flex: 1; min-width: 0; }
+        .acc-info h3 { font-weight: 700; font-size: 1.05rem; margin-bottom: 0.2rem; }
+        .acc-info span { font-size: 0.82rem; color: var(--text-muted); }
+
+        .acc-chevron {
+            color: var(--text-muted);
+            transition: transform 0.3s ease;
+            font-size: 0.75rem;
+            flex-shrink: 0;
+        }
+
+        .accordion-item.open .acc-chevron { transform: rotate(180deg); }
+
+        .accordion-body {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.45s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .accordion-body-inner {
+            padding: 2rem 1.75rem;
+            border-top: 1px solid var(--border);
+        }
+
+        .acc-lead {
+            font-size: 1.05rem;
+            font-weight: 500;
+            color: var(--text);
+            margin-bottom: 1.5rem;
+            line-height: 1.7;
+            padding-bottom: 1.5rem;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .accordion-body-inner p {
+            color: var(--text-muted);
+            line-height: 1.85;
+            margin-bottom: 1.1rem;
+            font-size: 0.95rem;
+        }
+
+        .lessons {
+            background: var(--accent-soft);
+            border: 1px solid var(--accent-border);
+            border-radius: 11px;
+            padding: 1.25rem 1.5rem;
+            margin-top: 1.5rem;
+        }
+
+        .lessons-label {
+            font-size: 0.72rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.14em;
+            color: var(--accent);
+            margin-bottom: 0.85rem;
+        }
+
+        .lessons-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+        }
+
+        .tag {
+            background: rgba(129, 140, 248, 0.1);
+            border: 1px solid rgba(129, 140, 248, 0.22);
+            padding: 0.3rem 0.85rem;
+            border-radius: 100px;
+            font-size: 0.8rem;
+            color: var(--accent);
+            font-weight: 500;
+        }
+
+        /* ── REFLECTION ── */
+        #reflectie { background: var(--bg); }
+
+        .reflection-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1.25rem;
+        }
+
+        .r-card {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 14px;
+            padding: 1.75rem;
+            transition: border-color 0.2s;
+        }
+
+        .r-card:hover { border-color: var(--accent-border); }
+        .r-card.span-2 { grid-column: 1 / -1; }
+
+        .r-card-head {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 1rem;
+        }
+
+        .r-card-head h3 { font-weight: 700; font-size: 1rem; }
+
+        .r-pill {
+            font-size: 0.72rem;
+            font-weight: 700;
+            padding: 0.25rem 0.75rem;
+            border-radius: 100px;
+        }
+
+        .p-green  { background: rgba(52,211,153,0.14); color: var(--green); }
+        .p-orange { background: rgba(251,146,60,0.14); color: var(--orange); }
+        .p-accent { background: var(--accent-soft); color: var(--accent); }
+        .p-pink   { background: rgba(244,114,182,0.14); color: var(--pink); }
+
+        .r-card p {
+            color: var(--text-muted);
+            line-height: 1.8;
+            font-size: 0.94rem;
+        }
+
+        /* ── FOOTER ── */
+        footer {
+            background: var(--surface);
+            border-top: 1px solid var(--border);
+            padding: 2.5rem 2rem;
+            text-align: center;
+        }
+
+        footer p { color: var(--text-muted); font-size: 0.875rem; }
+        footer p + p { margin-top: 0.4rem; font-size: 0.78rem; }
+
+        /* ── ANIMATIONS ── */
+        .fade-up {
+            opacity: 0;
+            transform: translateY(28px);
+            transition: opacity 0.65s ease, transform 0.65s ease;
+        }
+
+        .fade-up.visible { opacity: 1; transform: translateY(0); }
+
+        .fade-up:nth-child(2) { transition-delay: 0.07s; }
+        .fade-up:nth-child(3) { transition-delay: 0.14s; }
+        .fade-up:nth-child(4) { transition-delay: 0.21s; }
+        .fade-up:nth-child(5) { transition-delay: 0.28s; }
+        .fade-up:nth-child(6) { transition-delay: 0.35s; }
+        .fade-up:nth-child(7) { transition-delay: 0.42s; }
+        .fade-up:nth-child(8) { transition-delay: 0.49s; }
+
+        /* ── DIVIDER ── */
+        .section-divider {
+            height: 1px;
+            background: var(--border);
+            margin: 0 2rem;
+        }
+
+        /* ── RESPONSIVE ── */
+        @media (max-width: 768px) {
+            nav { padding: 1rem 1.25rem; }
+            .nav-links { display: none; }
+
+            section { padding: 4rem 1.25rem; }
+
+            .about-grid { grid-template-columns: 1fr; gap: 2.5rem; }
+            .stats { grid-template-columns: 1fr; }
+            .reflection-grid { grid-template-columns: 1fr; }
+            .r-card.span-2 { grid-column: 1; }
+
+            .accordion-header { padding: 1.25rem; }
+            .accordion-body-inner { padding: 1.5rem 1.25rem; }
+        }
+    </style>
+</head>
+<body>
+
+<!-- ══════════════════════════ NAVIGATION ══════════════════════════ -->
+<nav>
+    <div class="nav-logo">FK</div>
+    <ul class="nav-links">
+        <li><a href="#over-mij">Over mij</a></li>
+        <li><a href="#activiteiten">Activiteiten</a></li>
+        <li><a href="#selectie">Selectie</a></li>
+        <li><a href="#reflectie">Reflectie</a></li>
+    </ul>
+</nav>
+
+<!-- ══════════════════════════ HERO ══════════════════════════ -->
+<section class="hero" id="home">
+    <div class="hero-glow"></div>
+    <div class="hero-dots"></div>
+    <div class="hero-content">
+        <div class="hero-badge">
+            <span>✦</span>
+            <span>Portfolio 2024 – 2025 · PXL Hogeschool</span>
+        </div>
+        <h1 class="hero-name">
+            <span class="gradient-text">Fatih Kiliç</span>
+        </h1>
+        <p class="hero-sub">
+            <strong>Programmeur</strong> · Probleemoplosser · Levenslang lerende
+        </p>
+        <div class="hero-cta">
+            <a href="#over-mij" class="btn btn-primary">Over mij</a>
+            <a href="#selectie" class="btn btn-ghost">Bekijk selectie</a>
+        </div>
+    </div>
+</section>
+
+<!-- ══════════════════════════ OVER MIJ ══════════════════════════ -->
+<section id="over-mij">
+    <div class="container">
+        <p class="label">Voorstelling</p>
+        <h2 class="section-title">Over mij</h2>
+
+        <div class="about-grid">
+            <div class="about-text">
+                <p class="lead fade-up">Ik ben Fatih Kiliç, een programmeur die graag problemen oplost en altijd op zoek is naar nieuwe kennis. Ik hou van boeken lezen, mezelf ontwikkelen en probeer voortdurend een betere versie van mezelf te worden.</p>
+                <p class="fade-up">Ik ben een empathisch en meelevend persoon die graag anderen helpt. In teamverband zorg ik ervoor dat iedereen goed samenwerkt en zich goed voelt. Ik neem snel beslissingen wanneer dat nodig is en ben bereid om verantwoordelijkheid op te nemen.</p>
+                <p class="fade-up">Uit de POP-sessies heb ik geleerd dat ik sterk ben in samenwerking en zelfreflectie. Tegelijk is creativiteit een belangrijk groeipunt — ik kijk vaak eerst naar logische oplossingen in plaats van innovatieve ideeën.</p>
+                <p class="fade-up">Mijn ambitie: over 3 tot 5 jaar werken als programmeur of leerkracht, waar ik kennis doorgeef en een positieve impact maak op de samenleving.</p>
+            </div>
+
+            <div class="traits">
+                <div class="trait fade-up">
+                    <div class="trait-icon ic-purple">🧠</div>
+                    <div>
+                        <h4>Analytisch denken</h4>
+                        <p>Sterk in logisch en probleemoplossend denken. Kan snel verbanden leggen in complexe systemen.</p>
+                    </div>
+                </div>
+                <div class="trait fade-up">
+                    <div class="trait-icon ic-green">🤝</div>
+                    <div>
+                        <h4>Samenwerking</h4>
+                        <p>Empathisch teamspeler die zorgt dat iedereen goed samenwerkt en zich gehoord voelt.</p>
+                    </div>
+                </div>
+                <div class="trait fade-up">
+                    <div class="trait-icon ic-orange">📚</div>
+                    <div>
+                        <h4>Levenslang lerende</h4>
+                        <p>Altijd op zoek naar nieuwe kennis in wiskunde, programmeren en zelfontwikkeling.</p>
+                    </div>
+                </div>
+                <div class="trait fade-up">
+                    <div class="trait-icon ic-blue">🎯</div>
+                    <div>
+                        <h4>Verantwoordelijkheid</h4>
+                        <p>Neemt verantwoordelijkheid binnen teams en kan snel beslissingen nemen wanneer nodig.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="stats">
+            <div class="stat-card fade-up">
+                <span class="stat-emoji">💪</span>
+                <h3>Sterktes</h3>
+                <p>Programmeren, logisch denken, wiskunde en samenwerken in teams</p>
+            </div>
+            <div class="stat-card fade-up">
+                <span class="stat-emoji">🌱</span>
+                <h3>Groeipunten</h3>
+                <p>Creativiteit en innovatief denken buiten standaardoplossingen</p>
+            </div>
+            <div class="stat-card fade-up">
+                <span class="stat-emoji">🚀</span>
+                <h3>Ambitie</h3>
+                <p>Programmeur of leerkracht — kennis doorgeven en impact maken</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<div class="section-divider"></div>
+
+<!-- ══════════════════════════ ACTIVITEITEN ══════════════════════════ -->
+<section id="activiteiten">
+    <div class="container">
+        <p class="label">Overzicht</p>
+        <h2 class="section-title">Activiteiten</h2>
+        <p class="section-desc">Een overzicht van alle verplichte activiteiten doorheen het academiejaar, per domein.</p>
+
+        <div class="tabs">
+            <button class="tab-btn active" data-target="seminaries">Seminaries</button>
+            <button class="tab-btn" data-target="innovatie">Innovatie</button>
+            <button class="tab-btn" data-target="persoonlijk">Persoonlijke ontwikkeling</button>
+            <button class="tab-btn" data-target="internationaal">Internationalisering</button>
+        </div>
+
+        <!-- SEMINARIES -->
+        <div class="tab-pane active" id="tab-seminaries">
+            <div class="card-grid">
+                <div class="card fade-up">
+                    <div class="card-company">Brightest</div>
+                    <div class="card-title">BDD &amp; ATDD</div>
+                    <div class="card-desc">Intro tot gedragsgedreven en testgedreven ontwikkeling binnen softwareprojecten.</div>
+                    <div class="card-meta">
+                        <span>📍 PXL Hasselt</span>
+                        <span>📅 05/11/2025</span>
+                        <span>⏱ 3u</span>
+                    </div>
+                </div>
+                <div class="card fade-up">
+                    <div class="card-company">Refleqt</div>
+                    <div class="card-title">Postman AI</div>
+                    <div class="card-desc">Gebruik van AI om API's automatisch te testen met Postman.</div>
+                    <div class="card-meta">
+                        <span>📍 PXL Hasselt</span>
+                        <span>📅 26/11/2025</span>
+                        <span>⏱ 3u</span>
+                    </div>
+                </div>
+                <div class="card fade-up">
+                    <div class="card-company">Easi</div>
+                    <div class="card-title">Datawarehousing in Microsoft Fabric</div>
+                    <div class="card-desc">Basis van data-opslag en analyse in grote datasystemen.</div>
+                    <div class="card-meta">
+                        <span>📍 PXL Hasselt</span>
+                        <span>📅 03/12/2025</span>
+                        <span>⏱ 3u</span>
+                    </div>
+                </div>
+                <div class="card fade-up">
+                    <div class="card-company">Inetum</div>
+                    <div class="card-title">Enterprise UX</div>
+                    <div class="card-desc">Hoe user experience werkt binnen grote enterprise software.</div>
+                    <div class="card-meta">
+                        <span>📍 PXL Hasselt</span>
+                        <span>📅 10/12/2025</span>
+                        <span>⏱ 3u</span>
+                    </div>
+                </div>
+                <div class="card fade-up">
+                    <div class="card-company">Flexso</div>
+                    <div class="card-title">Low code / No code</div>
+                    <div class="card-desc">Applicaties bouwen met minimale code en visuele tools.</div>
+                    <div class="card-meta">
+                        <span>📍 PXL Hasselt</span>
+                        <span>📅 04/03/2025</span>
+                        <span>⏱ 3u</span>
+                    </div>
+                </div>
+                <div class="card fade-up">
+                    <div class="card-company">Nine Yards</div>
+                    <div class="card-title">User Story Mapping</div>
+                    <div class="card-desc">Opbouw van een MVP via user stories en prioriteiten.</div>
+                    <div class="card-meta">
+                        <span>📍 PXL Hasselt</span>
+                        <span>📅 11/03/2025</span>
+                        <span>⏱ 3u</span>
+                    </div>
+                </div>
+                <div class="card fade-up">
+                    <div class="card-company">Infofarm</div>
+                    <div class="card-title">CI/CD in AWS</div>
+                    <div class="card-desc">Automatisatie van build, test en deployment via cloud pipelines.</div>
+                    <div class="card-meta">
+                        <span>📍 PXL Hasselt</span>
+                        <span>📅 18/03/2025</span>
+                        <span>⏱ 3u</span>
+                    </div>
+                </div>
+                <div class="card fade-up">
+                    <div class="card-company">Ericsson</div>
+                    <div class="card-title">The Path to 6G</div>
+                    <div class="card-desc">Toekomst van netwerken en de evolutie richting 6G technologie.</div>
+                    <div class="card-meta">
+                        <span>📍 PXL Hasselt</span>
+                        <span>📅 22/04/2025</span>
+                        <span>⏱ 3u</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- INNOVATIE -->
+        <div class="tab-pane" id="tab-innovatie">
+            <div class="card-grid">
+                <div class="card fade-up">
+                    <div class="card-company">Innovatieroute</div>
+                    <div class="card-title">Application Integration</div>
+                    <div class="card-desc">Integratie van verschillende systemen en applicaties binnen complexe IT-omgevingen.</div>
+                    <div class="card-meta">
+                        <span>📍 PXL Hasselt</span>
+                        <span>📅 02/10 – 23/10/2025</span>
+                        <span>⏱ 25u</span>
+                    </div>
+                </div>
+                <div class="card fade-up">
+                    <div class="card-company">Hackathon</div>
+                    <div class="card-title">Hack the Future</div>
+                    <div class="card-desc">Optimaliseren van een game in teamverband.</div>
+                    <div class="card-meta">
+                        <span>📍 Antwerpen</span>
+                        <span>📅 12/11 – 13/11/2025</span>
+                        <span>⏱ 25u</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- PERSOONLIJK -->
+        <div class="tab-pane" id="tab-persoonlijk">
+            <div class="card-grid">
+                <div class="card fade-up">
+                    <div class="card-company">Projectweek 2TIN</div>
+                    <div class="card-title">Teamwork &amp; Research voorbereiding</div>
+                    <div class="card-desc">Teamwork en voorbereiding research project.</div>
+                    <div class="card-meta">
+                        <span>📍 PXL Hasselt</span>
+                        <span>📅 10/02 – 14/03/2025</span>
+                        <span>⏱ 27u</span>
+                    </div>
+                </div>
+                <div class="card fade-up">
+                    <div class="card-company">POP-sessie 2TIN</div>
+                    <div class="card-title">POPping</div>
+                    <div class="card-desc">Zelfreflectie en feedback geven en ontvangen.</div>
+                    <div class="card-meta">
+                        <span>📍 PXL Hasselt</span>
+                        <span>📅 24/03/2025</span>
+                        <span>⏱ 2u</span>
+                    </div>
+                </div>
+                <div class="card fade-up">
+                    <div class="card-company">POP-sessie 2TIN</div>
+                    <div class="card-title">Brein aan het werk</div>
+                    <div class="card-desc">Effect van digitale prikkels op focus en productiviteit.</div>
+                    <div class="card-meta">
+                        <span>📍 PXL Hasselt</span>
+                        <span>📅 18/02 – 25/03/2025</span>
+                        <span>⏱ 2u</span>
+                    </div>
+                </div>
+                <div class="card fade-up">
+                    <div class="card-company">POP-sessie 3TIN</div>
+                    <div class="card-title">My Team and I</div>
+                    <div class="card-desc">Inzicht in teamwerking en groepsdynamica.</div>
+                    <div class="card-meta">
+                        <span>📍 PXL Hasselt</span>
+                        <span>📅 15/10/2025</span>
+                        <span>⏱ 2u</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- INTERNATIONALISERING -->
+        <div class="tab-pane" id="tab-internationaal">
+            <div class="card-grid">
+                <div class="card fade-up">
+                    <div class="card-company">BusIT-week AP</div>
+                    <div class="card-title">VR-oplossing voor patiënten</div>
+                    <div class="card-desc">Ontwikkelen van een VR-oplossing voor patiënten die een operatie ondergaan, om angst en stress te verminderen.</div>
+                    <div class="card-meta">
+                        <span>📍 Antwerpen</span>
+                        <span>📅 12/05 – 16/05/2025</span>
+                        <span>⏱ 30u</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<div class="section-divider"></div>
+
+<!-- ══════════════════════════ SELECTIE ══════════════════════════ -->
+<section id="selectie">
+    <div class="container">
+        <p class="label">Diepgaande reflectie</p>
+        <h2 class="section-title">Selectie van activiteiten</h2>
+        <p class="section-desc">Drie activiteiten die een bijzondere impact hadden op mijn professionele en persoonlijke ontwikkeling.</p>
+
+        <!-- ACTIVITEIT 1 -->
+        <div class="accordion-item" id="act1">
+            <div class="accordion-header">
+                <div class="acc-num">01</div>
+                <div class="acc-info">
+                    <h3>BusIT-week – VR voor patiënten</h3>
+                    <span>BusIT-week AP · Antwerpen · 12–16 mei 2025 · 30u</span>
+                </div>
+                <div class="acc-chevron">▼</div>
+            </div>
+            <div class="accordion-body">
+                <div class="accordion-body-inner">
+                    <p class="acc-lead">Ontwikkeling van een VR-oplossing om patiënten beter voor te bereiden op een operatie en hun angst en stress te verminderen.</p>
+
+                    <p>Tijdens de BusIT-week van AP heb ik samen met mijn team gewerkt aan een VR-oplossing voor patiënten die een operatie moeten ondergaan in het ziekenhuis ZAS. Het hoofddoel was om patiënten beter voor te bereiden op hun operatie — zowel mentaal als fysiek — zodat angst, stress en onzekerheid zoveel mogelijk worden verminderd.</p>
+
+                    <p>Dit project was fundamenteel anders dan de meeste opdrachten die ik tot nu toe heb uitgevoerd. Waar projecten meestal sterk technisch gericht zijn, lag hier de nadruk op de mens achter de technologie. We moesten nadenken over hoe een patiënt een ziekenhuiservaring beleeft en welke emoties daarbij komen kijken.</p>
+
+                    <p>We begonnen met een uitgebreide analysefase: het binnenkomen in het ziekenhuis, wachten in een onbekende omgeving, de voorbereiding op de operatiekamer en het ontwaken na de ingreep. Elk van deze momenten kan een grote emotionele impact hebben, en net daar wilden we met VR een verschil maken.</p>
+
+                    <p>Een van de grootste uitdagingen was het vinden van de juiste balans tussen realisme en comfort. Te realistisch en het roept angst op. Te abstract en het verliest zijn effect. We werkten iteratief: stap voor stap verbeteringen op basis van feedback en nieuwe inzichten.</p>
+
+                    <p>Mijn rol bestond uit het analyseren van problemen, het structureren van ideeën en het bewaken van de logische opbouw van onze oplossing. Het medische en ethische karakter van het project gaf extra verantwoordelijkheid en maakte het realistischer dan een klassieke schoolopdracht.</p>
+
+                    <div class="lessons">
+                        <div class="lessons-label">Kernlessen</div>
+                        <div class="lessons-tags">
+                            <span class="tag">Mensgerichte technologie</span>
+                            <span class="tag">Iteratief ontwikkelen</span>
+                            <span class="tag">Ethische verantwoordelijkheid</span>
+                            <span class="tag">Teamcommunicatie</span>
+                            <span class="tag">Realisme vs. comfort</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ACTIVITEIT 2 -->
+        <div class="accordion-item" id="act2">
+            <div class="accordion-header">
+                <div class="acc-num">02</div>
+                <div class="acc-info">
+                    <h3>Hackathon – Hack The Future</h3>
+                    <span>Hackathon · Antwerpen · 12–13 november 2025 · 25u</span>
+                </div>
+                <div class="acc-chevron">▼</div>
+            </div>
+            <div class="accordion-body">
+                <div class="accordion-body-inner">
+                    <p class="acc-lead">Optimaliseren van een game door middel van analyse, strategie en teamwork onder tijdsdruk om een maximale score te behalen.</p>
+
+                    <p>Tijdens de hackathon "Hack the Future" in Antwerpen hebben we in team gewerkt aan een uitdagende en competitieve opdracht: een game analyseren, optimaliseren en verbeteren. Er was geen vaste handleiding, geen stap-voor-stap structuur en geen ruimte voor uitgebreide voorbereiding.</p>
+
+                    <p>We begonnen met een eerste analysefase: het volledige spelmechanisme doorgronden. Kleine veranderingen in parameters konden grote gevolgen hebben voor de score, waardoor nauwkeurigheid essentieel was.</p>
+
+                    <p>Na de analysefase verdeelden we taken op basis van sterktes: testen, analyse en implementatie. Mijn rol lag vooral in het analyseren van het systeem en het logisch structureren van strategieën — patronen herkennen in hoe het spel reageerde op bepaalde acties.</p>
+
+                    <p>Wat deze hackathon bijzonder uitdagend maakte: werken met onvolledige informatie. We konden niet alles perfect voorspellen, dus beslissingen op basis van observaties en logische redenering waren de norm.</p>
+
+                    <p>Ik merkte dat ik goed presteer bij duidelijke structuur, maar dat ik nog kan groeien in het sneller nemen van beslissingen zonder volledige zekerheid. De les: snelheid is in veel situaties belangrijker dan perfectie.</p>
+
+                    <div class="lessons">
+                        <div class="lessons-label">Kernlessen</div>
+                        <div class="lessons-tags">
+                            <span class="tag">Werken onder tijdsdruk</span>
+                            <span class="tag">Analytisch vermogen</span>
+                            <span class="tag">Beslissen met onzekerheid</span>
+                            <span class="tag">Strategisch denken</span>
+                            <span class="tag">Efficiënte communicatie</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ACTIVITEIT 3 -->
+        <div class="accordion-item" id="act3">
+            <div class="accordion-header">
+                <div class="acc-num">03</div>
+                <div class="acc-info">
+                    <h3>Innovatieroute – Application Integration</h3>
+                    <span>Innovatieroute · PXL Hasselt · 02–23 oktober 2025 · 25u</span>
+                </div>
+                <div class="acc-chevron">▼</div>
+            </div>
+            <div class="accordion-body">
+                <div class="accordion-body-inner">
+                    <p class="acc-lead">Onderzoek en praktische oefeningen rond hoe verschillende softwaresystemen met elkaar verbonden worden binnen complexe IT-omgevingen.</p>
+
+                    <p>Tijdens de innovatieroute "Application Integration" kregen we inzicht in hoe moderne softwaresystemen met elkaar verbonden worden. Het doel was niet alleen begrijpen hoe systemen technisch communiceren, maar hoe volledige digitale ecosystemen in grote organisaties samenwerken.</p>
+
+                    <p>We startten met kernconcepten: API's, middleware, event-driven architectuur, dataflows, microservices en cloud-integratie. Een API is een contract tussen systemen. Middleware is de tussenlaag voor systemen die niet direct compatibel zijn. Event-driven architectuur maakt systemen flexibeler maar ook complexer.</p>
+
+                    <p>In de praktijk werkten we met scenario's zoals webshops en data platforms. We analyseerden hoe data stroomt en wat er gebeurt wanneer een systeem faalt — een probleem in één component kan een kettingreactie veroorzaken in het volledige systeem.</p>
+
+                    <p>Mijn rol was analyserend: complexe systemen opdelen in kleinere, begrijpelijke onderdelen. Wat mij opviel: eindgebruikers hebben geen idee van de complexiteit achter eenvoudige acties zoals inloggen of een betaling uitvoeren. Achter die actie zitten meerdere systemen die naadloos samenwerken.</p>
+
+                    <p>Deze activiteit heeft mijn begrip van softwarearchitectuur sterk verdiept. Ik zie nu veel beter hoe alles met elkaar verbonden is en hoe belangrijk goede architectuur is voor betrouwbare systemen.</p>
+
+                    <div class="lessons">
+                        <div class="lessons-label">Kernlessen</div>
+                        <div class="lessons-tags">
+                            <span class="tag">API's &amp; middleware</span>
+                            <span class="tag">Event-driven architectuur</span>
+                            <span class="tag">Systeemintegratie</span>
+                            <span class="tag">Foutafhandeling</span>
+                            <span class="tag">Cloud-integratie</span>
+                            <span class="tag">Softwarearchitectuur</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<div class="section-divider"></div>
+
+<!-- ══════════════════════════ REFLECTIE ══════════════════════════ -->
+<section id="reflectie">
+    <div class="container">
+        <p class="label">Eindreflectie</p>
+        <h2 class="section-title">Terugblik op mijn leertraject</h2>
+        <p class="section-desc">Gedurende mijn opleiding heb ik mezelf sterk zien groeien, zowel technisch als persoonlijk.</p>
+
+        <div class="reflection-grid">
+            <div class="r-card fade-up">
+                <div class="r-card-head">
+                    <h3>Sterktes</h3>
+                    <span class="r-pill p-green">Kracht</span>
+                </div>
+                <p>Mijn grootste sterkte is mijn analytisch en logisch denkvermogen. Ik kan snel verbanden leggen en oplossingen bedenken. Daarnaast ben ik een betrouwbare teamspeler die verantwoordelijkheid neemt wanneer nodig.</p>
+            </div>
+
+            <div class="r-card fade-up">
+                <div class="r-card-head">
+                    <h3>Groeipunt</h3>
+                    <span class="r-pill p-orange">Groei</span>
+                </div>
+                <p>Mijn grootste groeipunt blijft creativiteit. Ik wil leren om meer out-of-the-box te denken en niet altijd eerst naar logische of standaardoplossingen te gaan. Innovatief denken is een vaardigheid die ik actief wil ontwikkelen.</p>
+            </div>
+
+            <div class="r-card fade-up">
+                <div class="r-card-head">
+                    <h3>De X-Factor</h3>
+                    <span class="r-pill p-pink">Uniek</span>
+                </div>
+                <p>Mijn X-Factor is dat ik techniek combineer met empathie en verantwoordelijkheid. Ik wil technologie niet alleen gebruiken om problemen op te lossen, maar ook om mensen te helpen en impact te maken op de samenleving.</p>
+            </div>
+
+            <div class="r-card fade-up">
+                <div class="r-card-head">
+                    <h3>Toekomst</h3>
+                    <span class="r-pill p-accent">Visie</span>
+                </div>
+                <p>Over 3 tot 5 jaar wil ik werken als programmeur of leerkracht — werk dat betekenisvol is en anderen helpt groeien. Ik zie mijn leertraject als iets dat nooit stopt. Mezelf blijven verbeteren en nieuwe technologieën leren.</p>
+            </div>
+
+            <div class="r-card span-2 fade-up">
+                <div class="r-card-head">
+                    <h3>Algemene conclusie</h3>
+                </div>
+                <p>Tijdens mijn opleiding heb ik mezelf sterk zien groeien. Ik ben iemand geworden die niet alleen problemen oplost, maar ook bewuster nadenkt over samenwerking, communicatie en de impact van technologie op mensen. Mijn oorspronkelijke doel was beter worden in programmeren en probleemoplossing — en dat is zeker gelukt. Ik voel me veel zelfzekerder in technische uitdagingen en kan complexe problemen beter analyseren en oplossen. Maar de grootste les van dit academiejaar is misschien wel dat goede communicatie even belangrijk is als technische kennis.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ══════════════════════════ FOOTER ══════════════════════════ -->
+<footer>
+    <p>Fatih Kiliç · Portfolio 2024–2025 · PXL Hogeschool</p>
+    <p>Programmeur · Probleemoplosser · Levenslang lerende</p>
+</footer>
+
+<!-- ══════════════════════════ JAVASCRIPT ══════════════════════════ -->
+<script>
+    /* ── TABS ── */
+    document.querySelectorAll('.tab-btn').forEach(btn => {
+        btn.addEventListener('click', () => {
+            const target = btn.dataset.target;
+
+            document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+            document.querySelectorAll('.tab-pane').forEach(p => p.classList.remove('active'));
+
+            btn.classList.add('active');
+            document.getElementById('tab-' + target).classList.add('active');
+        });
+    });
+
+    /* ── ACCORDION ── */
+    document.querySelectorAll('.accordion-header').forEach(header => {
+        header.addEventListener('click', () => {
+            const item = header.closest('.accordion-item');
+            const body = item.querySelector('.accordion-body');
+            const isOpen = item.classList.contains('open');
+
+            // Close all
+            document.querySelectorAll('.accordion-item').forEach(el => {
+                el.classList.remove('open');
+                el.querySelector('.accordion-body').style.maxHeight = '0';
+            });
+
+            // Open clicked if it was closed
+            if (!isOpen) {
+                item.classList.add('open');
+                body.style.maxHeight = body.scrollHeight + 'px';
+            }
+        });
+    });
+
+    /* ── SCROLL ANIMATIONS ── */
+    const io = new IntersectionObserver(entries => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('visible');
+                io.unobserve(entry.target);
+            }
+        });
+    }, { threshold: 0.1 });
+
+    document.querySelectorAll('.fade-up').forEach(el => io.observe(el));
+
+    /* ── ACTIVE NAV LINK ── */
+    const sections = document.querySelectorAll('section[id]');
+    const navLinks = document.querySelectorAll('.nav-links a');
+
+    const navObserver = new IntersectionObserver(entries => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                const id = entry.target.getAttribute('id');
+                navLinks.forEach(link => {
+                    const isActive = link.getAttribute('href') === '#' + id;
+                    link.style.color = isActive ? 'var(--accent)' : '';
+                });
+            }
+        });
+    }, { rootMargin: '-40% 0px -55% 0px' });
+
+    sections.forEach(s => navObserver.observe(s));
+</script>
+</body>
+</html>

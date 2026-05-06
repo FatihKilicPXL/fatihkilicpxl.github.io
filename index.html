@@ -1240,7 +1240,7 @@
                     <button id="g-ov-btn" class="btn btn-primary">Start spel ▶</button>
                 </div>
             </div>
-            <p class="game-hint">🖱️ Muis of ← → toetsen om te bewegen &nbsp;·&nbsp; Spatiebalk om te starten</p>
+            <p class="game-hint">🖱️ Muis of ← → toetsen · 👆 Sleep je vinger op mobiel &nbsp;·&nbsp; Spatiebalk om te starten</p>
         </div>
     </div>
 </section>
@@ -1584,6 +1584,12 @@
             const rect = canvas.getBoundingClientRect();
             mouseX = (e.clientX - rect.left) * (W / rect.width);
         });
+
+        canvas.addEventListener('touchstart', e => {
+            e.preventDefault();
+            const rect = canvas.getBoundingClientRect();
+            mouseX = (e.touches[0].clientX - rect.left) * (W / rect.width);
+        }, { passive: false });
 
         canvas.addEventListener('touchmove', e => {
             e.preventDefault();

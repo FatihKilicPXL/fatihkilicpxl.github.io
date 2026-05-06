@@ -1414,10 +1414,14 @@
             if (state !== 'playing') return;
 
             /* Paddle */
-            let px = mouseX - PW / 2;
-            if (keys['ArrowLeft'])  px -= 9;
-            if (keys['ArrowRight']) px += 9;
-            paddle.x += (Math.max(0, Math.min(W - PW, px)) - paddle.x) * 0.2;
+            let movedByKey = false;
+            if (keys['ArrowLeft'])  { paddle.x = Math.max(0, paddle.x - 9);        movedByKey = true; }
+            if (keys['ArrowRight']) { paddle.x = Math.min(W - PW, paddle.x + 9);   movedByKey = true; }
+            if (movedByKey) {
+                mouseX = paddle.x + PW / 2; // sync so mouse take-over is seamless
+            } else {
+                paddle.x += (Math.max(0, Math.min(W - PW, mouseX - PW / 2)) - paddle.x) * 0.2;
+            }
 
             /* Ball trail */
             ball.trail.push({ x: ball.x, y: ball.y });
